@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
-export default class GoodbyeComponent extends Component {
+export default class SimplePoemComponent extends Component {
+
+    static propTypes = {
+        data: React.PropTypes.array
+    };
 
     render() {
         return (
@@ -10,6 +14,7 @@ export default class GoodbyeComponent extends Component {
                     I like poems, <br />
                     I also like waffles.
                 </p>
+                <p>{this.props.data}</p>
             </div>
         );
     }

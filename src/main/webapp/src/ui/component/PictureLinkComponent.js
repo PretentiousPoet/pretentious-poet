@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 
 export default class PictureLinkComponent extends Component {
 
     static propTypes = {
-        fetchData: React.PropTypes.func,
-        data: React.PropTypes.object
+        fetchData: React.PropTypes.func
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            thisRef: this
+            value: ''
         };
     }
 
@@ -53,7 +51,6 @@ export default class PictureLinkComponent extends Component {
                 <Button onClick={() => this.props.fetchData(this.onSuccess())}>
                     Fetch Data
                 </Button>
-                <p>{this.props.data.items}</p>
             </form>
         );
     }

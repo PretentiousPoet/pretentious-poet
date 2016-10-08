@@ -1,22 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import GoodbyeComponent from 'component/GoodbyeComponent';
+import SimplePoemComponent from 'component/SimplePoemComponent';
 
-class Goodbye extends Component {
+class Poem extends Component {
 
     render() {
         return (
             <div id="application">
-                <GoodbyeComponent/>
+                <SimplePoemComponent data={this.props.data.items}/>
             </div>
         );
     }
 }
 
-let mapStateToProps = () => ({}),
+let mapStateToProps = (state) => ({data: state.stub}),
     mapDispatchToProps = {};
 
 export default connect(
-    mapStateToProps,
+    (state) => mapStateToProps(state),
     mapDispatchToProps
-)(Goodbye);
+)(Poem);

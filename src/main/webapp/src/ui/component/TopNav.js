@@ -12,7 +12,7 @@ export default class TopNav extends Component {
                         <NavItem eventKey={1} href="#">Hello</NavItem>
                     </IndexLinkContainer>
                     <LinkContainer to={{pathname: '/poem'}}>
-                        <NavItem eventKey={2} href="#">Goodbye</NavItem>
+                        <NavItem eventKey={2} href="#">Poem</NavItem>
                     </LinkContainer>
                 </Nav>
             </Navbar>
