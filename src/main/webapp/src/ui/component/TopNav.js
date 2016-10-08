@@ -7,18 +7,11 @@ export default class TopNav extends Component {
     render() {
         return (
             <Navbar>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <LinkContainer to={{pathname: '/'}} active={false}>
-                            <p>Home</p>
-                        </LinkContainer>
-                    </Navbar.Brand>
-                </Navbar.Header>
                 <Nav>
-                    <LinkContainer to={{pathname: '/hello'}}>
+                    <IndexLinkContainer to={{pathname: '/'}}>
                         <NavItem eventKey={1} href="#">Hello</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to={{pathname: '/goodbye'}}>
+                    </IndexLinkContainer>
+                    <LinkContainer to={{pathname: '/poem'}}>
                         <NavItem eventKey={2} href="#">Goodbye</NavItem>
                     </LinkContainer>
                 </Nav>

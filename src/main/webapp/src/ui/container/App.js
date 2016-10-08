@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchStub} from 'actions/stub';
-import FetchDataComponent from 'component/FetchDataComponent';
 import TopNav from 'component/TopNav';
 
 export class App extends Component {
@@ -12,19 +11,12 @@ export class App extends Component {
             <div id="application">
                 <TopNav/>
                 {this.props.children}
-                <FetchDataComponent
-                    fetchData={() => this.props.fetchStub()}
-                    data={this.props.data}/>
             </div>
         );
     }
 }
 
-const maStateToProps = (state) => {
-    return {
-        data: state.stub
-    };
-};
-const mapDispatchToProps = {fetchStub};
+let mapStateToProps = (state) => ({}),
+    mapDispatchToProps = {};
 
-export default connect((state) => maStateToProps(state), mapDispatchToProps)(App);
+export default connect((state) => mapStateToProps(state), mapDispatchToProps)(App);
