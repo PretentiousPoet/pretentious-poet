@@ -9,9 +9,9 @@ export default class SimplePoemComponent extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container text-center">
                 <Row>
-                    <Col md={12} className="text-center">
+                    <Col md={12}>
                         <h1>header</h1>
                         <p className="lead">yes</p>
                         <p>Put Ya Poems Here!</p>
@@ -24,7 +24,7 @@ export default class SimplePoemComponent extends Component {
                 </Row>
 
 
-                <footer className="text-center">
+                <footer>
                     <div className="footer-below">
                         <div className="container">
                             <Row>

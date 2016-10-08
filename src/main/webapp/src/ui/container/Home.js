@@ -3,16 +3,21 @@ import {connect} from 'react-redux';
 import {fetchStub} from 'actions/stub';
 import PictureLinkComponent from 'component/PictureLinkComponent';
 import HomeComponent from 'component/HomeComponent';
+import {Row, Col} from 'react-bootstrap';
 
 class Home extends Component {
 
     render() {
         return (
-            <div id="application">
-                <HomeComponent/>
-                <PictureLinkComponent
-                    fetchData={() => this.props.fetchStub()}
-                    data={this.props.data}/>
+            <div id="application" className="text-center">
+                <Row>
+                    <HomeComponent/>
+                </Row>
+                <Row>
+                    <PictureLinkComponent
+                        fetchData={() => this.props.fetchStub()}
+                        data={this.props.data}/>
+                </Row>
             </div>
         );
     }

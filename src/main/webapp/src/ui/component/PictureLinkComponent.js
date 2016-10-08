@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
 import {browserHistory} from 'react-router';
+import {Row, Col} from 'react-bootstrap';
 
 export default class PictureLinkComponent extends Component {
 
@@ -33,25 +34,47 @@ export default class PictureLinkComponent extends Component {
 
     render() {
         return (
-            <form>
-                <FormGroup controlId="picSubmit" validationState={this.getValidationState()}>
-                    <ControlLabel>
-                        A picture is worth a thousand words,
-                        let's see some of them.
-                    </ControlLabel>
-                </FormGroup>
-                <FormControl
-                    type="text"
-                    value={this.state.value}
-                    placeholder="Enter text"
-                    onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-                <HelpBlock>Validation is based on string length.</HelpBlock>
-                <Button onClick={() => this.props.fetchData(this.onSuccess())}>
-                    Fetch Data
-                </Button>
-            </form>
+            <Col md={12}>
+                <form>
+                    <Row>
+                        <Col md={12}>
+                            <FormGroup controlId="picSubmit" validationState={this.getValidationState()}>
+                                <Row>
+                                    <Col md={12}>
+                                        <ControlLabel>
+                                            A picture is worth a thousand words,
+                                            let's see some of them.
+                                        </ControlLabel>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <ControlLabel>
+                                            Enter a URL
+                                            for a picture you'd like to make poem for.
+                                        </ControlLabel>
+                                    </Col>
+                                </Row>
+                            </FormGroup>
+                            <FormControl
+                                type="text"
+                                value={this.state.value}
+                                placeholder="Enter URL"
+                                onChange={this.handleChange}
+                            />
+                            <FormControl.Feedback />
+                        </Col>
+                    </Row>
+                    <Row style={{paddingTop: '20px'}}>
+                        <Col md={12}>
+                            <Button onClick={() => this.props.fetchData(this.onSuccess())}
+                                    style={{backgroundColor: '#FFBEC2'}}>
+                                Fetch Data
+                            </Button>
+                        </Col>
+                    </Row>
+                </form>
+            </Col>
         );
     }
 }
