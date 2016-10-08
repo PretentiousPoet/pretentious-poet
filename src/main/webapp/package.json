@@ -20,6 +20,7 @@
     "css-loader": "^0.23.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.15.0",
     "http-proxy-middleware": "^0.13.0",
     "jeet": "6.1.2",
@@ -34,6 +35,7 @@
     "stripcomment-loader": "^0.1.0",
     "style-loader": "^0.13.1",
     "stylus-loader": "^2.0.0",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"

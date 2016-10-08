@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchStub} from 'actions/stub';
 import TopNav from 'component/TopNav';
+import {Grid} from 'react-bootstrap';
 
 export class App extends Component {
 
@@ -9,8 +10,10 @@ export class App extends Component {
 
         return (
             <div id="application">
-                <TopNav/>
-                {this.props.children}
+                <Grid>
+                    {/*<TopNav/>*/}
+                    {this.props.children}
+                </Grid>
             </div>
         );
     }

@@ -5,47 +5,51 @@ var jeet = require('jeet');
 var nib = require('nib');
 
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index'
-  ],
-  output: {
-    path: path.join(__dirname, 'static'),
-    filename: 'bundle.js',
-    publicPath: 'http://localhost:3000/'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify('development')
-      }
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Boot React',
-      template: path.join(__dirname, 'assets/index-template.html')
-    })
-  ],
-  resolve: {
-    extensions: ['', '.js'],
-    root: path.join(__dirname, 'src')
-  },
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel?cacheDirectory'],
-      include: path.join(__dirname, 'src')
-    }, {
-      test: /\.styl$/,
-      loaders: ['style-loader', 'css-loader', 'stylus-loader']
-    }, {
-      test: /\.json/,
-      loaders: ['json-loader']
-    }]
-  },
-  stylus: {
-    use: [jeet(), nib()]
-  }
+    devtool: 'inline-source-map',
+    entry: [
+        'webpack-hot-middleware/client',
+        './src/index'
+    ],
+    output: {
+        path: path.join(__dirname, 'static'),
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:3000/'
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify('development')
+            }
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Boot React',
+            template: path.join(__dirname, 'assets/index-template.html')
+        })
+    ],
+    resolve: {
+        extensions: ['', '.js'],
+        root: path.join(__dirname, 'src')
+    },
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            loaders: ['babel?cacheDirectory'],
+            include: path.join(__dirname, 'src')
+        }, {
+            test: /\.css/,
+            loader: "style-loader!css-loader"
+            //"style-loader!css-loader?modules"
+        }, {
+            test: /\.(eot|svg|ttf|woff|woff2)$/,
+            loader:'url-loader?limit=30000&name=[name]-[hash].[ext]'
+        }, {
+            test: /\.json/,
+            loaders: ['json-loader']
+        }]
+    },
+    stylus: {
+        use: [jeet(), nib()]
+    }
 };

@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import StubPoemComponent from 'component/StubPoemComponent';
 import SimplePoemComponent from 'component/SimplePoemComponent';
 
 class Poem extends Component {
