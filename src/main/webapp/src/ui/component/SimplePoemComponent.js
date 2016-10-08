@@ -14,6 +14,12 @@ export default class SimplePoemComponent extends Component {
                     <Col md={12} className="text-center">
                         <h1>header</h1>
                         <p className="lead">yes</p>
+                        <p>Put Ya Poems Here!</p>
+                        <p> This is a poem,<br />
+                            I like poems, <br />
+                            I also like waffles.
+                        </p>
+                        <p>{this.props.data}</p>
                     </Col>
                 </Row>
 
