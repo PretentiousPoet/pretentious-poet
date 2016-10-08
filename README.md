@@ -1,6 +1,6 @@
-# spring-react
+# pretentious-poet
 
-Minimal starter Template for a React + Spring Boot project using WebPack and react-hot-loader.
+Poem generator for the Wordsworth in us all.
 
 ### Usage
 To build the project, run
