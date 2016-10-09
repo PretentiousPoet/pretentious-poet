@@ -32,7 +32,8 @@ public class Examples {
 
 	public static void main(String[] args) throws Exception {
 		String requestURL = "https://samples.clarifai.com/demo-1.jpg";
-		System.out.println(sendGet("http://yoururl.com/api/poem?url=" + URLEncoder.encode(requestURL, "UTF-8")));
+		System.out.println(sendGet("http://yoururl.com/api/poem?url=" 
+		    + URLEncoder.encode(requestURL, "UTF-8")));
 	}
 }
 
