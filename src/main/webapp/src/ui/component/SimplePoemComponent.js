@@ -18,7 +18,7 @@ export default class SimplePoemComponent extends Component {
                 <Row>
                     <Col md={12}>
                         <Image src='https://upload.wikimedia.org/wikipedia/commons/f/fb/Welchcorgipembroke.JPG'
-                                rouded
+                               rouded
                                style={{maxHeight: '300px', maxWidth: '500px'}}/>
                     </Col>
                 </Row>
