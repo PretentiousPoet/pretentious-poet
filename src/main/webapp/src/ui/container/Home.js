@@ -4,8 +4,17 @@ import {fetchStub} from 'actions/stub';
 import PictureLinkComponent from 'component/PictureLinkComponent';
 import HomeComponent from 'component/HomeComponent';
 import {Row, Col} from 'react-bootstrap';
+import {browserHistory} from 'react-router';
 
 class Home extends Component {
+
+    getRequest = (url) => {
+        this.props.fetchStub(url, () => this.onSuccess());
+    };
+
+    onSuccess = () => {
+        browserHistory.push("/poem");
+    };
 
     render() {
         return (
@@ -15,7 +24,7 @@ class Home extends Component {
                 </Row>
                 <Row>
                     <PictureLinkComponent
-                        fetchData={() => this.props.fetchStub()}
+                        fetchData={(url) => this.getRequest(url)}
                         data={this.props.data}/>
                 </Row>
             </div>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
-import {browserHistory} from 'react-router';
 import {Row, Col} from 'react-bootstrap';
 
 export default class PictureLinkComponent extends Component {
@@ -25,10 +24,6 @@ export default class PictureLinkComponent extends Component {
 
     handleChange = (e) => {
         this.setState({value: e.target.value});
-    };
-
-    onSuccess = () => {
-        browserHistory.push("/poem");
     };
 
 
@@ -57,7 +52,10 @@ export default class PictureLinkComponent extends Component {
                                 </Row>
                             </FormGroup>
                             <FormControl
-                                style={{maxWidth: '400px', margin: 'auto'/*, backgroundColor:'gray', borderColor:'#777'*/}}
+                                style={{
+                                    maxWidth: '400px',
+                                    margin: 'auto'/*, backgroundColor:'gray', borderColor:'#777'*/
+                                }}
                                 type="text"
                                 value={this.state.value}
                                 placeholder="Enter a URL"
@@ -68,7 +66,7 @@ export default class PictureLinkComponent extends Component {
                     </Row>
                     <Row style={{paddingTop: '20px'}}>
                         <Col md={12}>
-                            <Button onClick={() => this.props.fetchData(this.onSuccess())}
+                            <Button onClick={() => this.props.fetchData(this.state.value)}
                                     style={{backgroundColor: '#FFBEC2'}}>
                                 Generate Poem
                             </Button>
