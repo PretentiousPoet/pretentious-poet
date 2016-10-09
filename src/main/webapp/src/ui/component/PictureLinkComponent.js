@@ -50,16 +50,17 @@ export default class PictureLinkComponent extends Component {
                                 <Row>
                                     <Col md={12}>
                                         <ControlLabel>
-                                            Enter a URL
-                                            for a picture you'd like to make poem for.
+                                            Paste an image URL
+                                            you'd like to make a poem for.
                                         </ControlLabel>
                                     </Col>
                                 </Row>
                             </FormGroup>
                             <FormControl
+                                style={{maxWidth: '400px', margin: 'auto'/*, backgroundColor:'gray', borderColor:'#777'*/}}
                                 type="text"
                                 value={this.state.value}
-                                placeholder="Enter URL"
+                                placeholder="Enter a URL"
                                 onChange={this.handleChange}
                             />
                             <FormControl.Feedback />
@@ -69,7 +70,7 @@ export default class PictureLinkComponent extends Component {
                         <Col md={12}>
                             <Button onClick={() => this.props.fetchData(this.onSuccess())}
                                     style={{backgroundColor: '#FFBEC2'}}>
-                                Fetch Data
+                                Generate Poem
                             </Button>
                         </Col>
                     </Row>

@@ -43,11 +43,14 @@ module.exports = {
             //"style-loader!css-loader?modules"
         }, {
             test: /\.(eot|svg|ttf|woff|woff2)$/,
-            loader:'url-loader?limit=30000&name=[name]-[hash].[ext]'
+            loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
         }, {
-            test: /\.json/,
-            loaders: ['json-loader']
-        }]
+            test: /\.png$/,
+            loader: "file-loader"
+        }, {
+                test: /\.json/,
+                loaders: ['json-loader']
+            }]
     },
     stylus: {
         use: [jeet(), nib()]

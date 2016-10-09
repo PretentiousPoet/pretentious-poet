@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Image} from 'react-bootstrap';
 
 export default class SimplePoemComponent extends Component {
 
@@ -12,8 +12,19 @@ export default class SimplePoemComponent extends Component {
             <div className="container text-center">
                 <Row>
                     <Col md={12}>
-                        <h1>header</h1>
-                        <p className="lead">yes</p>
+                        <h1 style={{color: '#FFBEC2'}}>header</h1>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        <Image src='https://upload.wikimedia.org/wikipedia/commons/f/fb/Welchcorgipembroke.JPG'
+                                rouded
+                               style={{maxHeight: '300px', maxWidth: '500px'}}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        {/*<p className="lead">yes</p>*/}
                         <p>Put Ya Poems Here!</p>
                         <p> This is a poem,<br />
                             I like poems, <br />
@@ -22,21 +33,7 @@ export default class SimplePoemComponent extends Component {
                         <p>{this.props.data}</p>
                     </Col>
                 </Row>
-
-
-                <footer>
-                    <div className="footer-below">
-                        <div className="container">
-                            <Row>
-                                <Col md={12}>
-                                    Copyright &copy; Your Website 2016
-                                </Col>
-                            </Row>
-                        </div>
-                    </div>
-                </footer>
             </div>
-
         );
     }
 }

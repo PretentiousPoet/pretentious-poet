@@ -7,7 +7,7 @@ export default class HomeComponent extends Component {
         return (
             <Col md={12}>
                 <h1 style={{color: '#FFBEC2'}}>
-                    Hello, World!
+                    Poetry Made Easy
                 </h1>
             </Col>
         );
