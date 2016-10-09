@@ -1,11 +1,14 @@
 @font-face {
     font-family: "1942 Report";
     src: url('1942.ttf');
+
 }
 body {
     padding-top: 65px;
     font-family: "1942 Report";
-    font-size: 14px;
+    font-smooth: always;
+    font-weight: bold;
+    font-size: 20px;
     line-height: 1.42857143;
     color: white;
     background-color: black;
