@@ -4,10 +4,22 @@ import {Row, Col, Image} from 'react-bootstrap';
 export default class SimplePoemComponent extends Component {
 
     static propTypes = {
-        data: React.PropTypes.array
+        data: React.PropTypes.array,
+        picture: React.PropTypes.string
+    };
+
+    poemParser = (poem) => {
+        // let poemString = poem;
+        let newPoemString;
+        while((newPoemString = poem.replace(/NewlinE/g, '\n').replace(/SpacE/g, ' ')) != poem){
+            poem = newPoemString;
+        }
+
+        return poem;
     };
 
     render() {
+        const poem = this.poemParser(this.props.data);
         return (
             <div className="container text-center">
                 <Row>
@@ -17,20 +29,15 @@ export default class SimplePoemComponent extends Component {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        <Image src='https://upload.wikimedia.org/wikipedia/commons/f/fb/Welchcorgipembroke.JPG'
+                        {this.props.picture ? <Image src={this.props.picture}
                                rouded
-                               style={{maxHeight: '300px', maxWidth: '500px'}}/>
+                               style={{maxHeight: '300px', maxWidth: '500px'}}/> : ''}
                     </Col>
                 </Row>
                 <Row>
                     <Col md={12}>
                         {/*<p className="lead">yes</p>*/}
-                        <p>Put Ya Poems Here!</p>
-                        <p> This is a poem,<br />
-                            I like poems, <br />
-                            I also like waffles.
-                        </p>
-                        <p>{this.props.data}</p>
+                        <p style={{whiteSpace: 'pre'}}>{poem}</p>
                     </Col>
                 </Row>
             </div>

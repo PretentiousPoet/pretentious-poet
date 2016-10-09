@@ -1,20 +1,19 @@
-import {FETCH_STUB_REQUEST, FETCH_STUB_SUCCESS, FETCH_STUB_FAIL} from 'actions/stub';
+import {SET_URL} from 'actions/url';
 
 const initialState = {
-    items: ''
+    url: ''
 };
 
 // Reducer
 
 export default function stubReducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_STUB_SUCCESS:
+        case SET_URL:
             return {
                 ...state,
-                items: action.result.data
+                url: action.url
             };
         default:
             return state;
     }
 }
-

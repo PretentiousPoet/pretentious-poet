@@ -5,7 +5,8 @@ import {Row, Col} from 'react-bootstrap';
 export default class PictureLinkComponent extends Component {
 
     static propTypes = {
-        fetchData: React.PropTypes.func
+        fetchData: React.PropTypes.func,
+        setURL: React.PropTypes.func
     };
 
     constructor(props) {
@@ -66,7 +67,10 @@ export default class PictureLinkComponent extends Component {
                     </Row>
                     <Row style={{paddingTop: '20px'}}>
                         <Col md={12}>
-                            <Button onClick={() => this.props.fetchData(this.state.value)}
+                            <Button onClick={() => {
+                                this.props.fetchData(this.state.value);
+                                this.props.setURL(this.state.value);
+                            }}
                                     style={{backgroundColor: '#FFBEC2'}}>
                                 Generate Poem
                             </Button>

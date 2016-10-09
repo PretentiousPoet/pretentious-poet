@@ -8,13 +8,15 @@ class Poem extends Component {
     render() {
         return (
             <div id="application">
-                <SimplePoemComponent data={this.props.data.items}/>
+                <SimplePoemComponent data={this.props.data.items}
+                                     picture={this.props.url.url}
+                />
             </div>
         );
     }
 }
 
-let mapStateToProps = (state) => ({data: state.stub}),
+let mapStateToProps = (state) => ({data: state.stub, url: state.url}),
     mapDispatchToProps = {};
 
 export default connect(
