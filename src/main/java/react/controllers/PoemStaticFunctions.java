@@ -50,6 +50,7 @@ public class PoemStaticFunctions {
 			synonyms.addAll(scrapeThesaurus(tag, COMPLEXITY));
 		}
 
+		// Prevents swears form occuring in poem.
 		List<String> swears = Arrays.asList("bitch", "fuck", "nigger", "nigga", "cunt", "shit", "cock", "dyke", "dike",
 				"tranny", "spick", "raghead", "kike", "ass");
 
