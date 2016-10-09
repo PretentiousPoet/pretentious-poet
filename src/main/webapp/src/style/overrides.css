@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "1942 Report";
+    src: url('1942.ttf');
+}
+body {
+    padding-top: 65px;
+    font-family: "1942 Report";
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: white;
+    background-color: black;
+}
+.navbar-default {
+    background-color: black !important;
+    border-color: black !important;
+}
+.navColorOverrideWhite {
+    color: white !important;
+}
+
+.noPaddingOverride {
+    margin-left: 0 !important;
+}
+.noMarginOverride {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+footer {
+    color: white;
+}
+footer h3 {
+    margin-bottom: 30px;
+}
+footer .footer-above {
+    padding-top: 30px;
+    background-color: black;
+}
+footer .footer-col {
+    /*margin-bottom: 50px;*/
+}
+footer .footer-below {
+    padding: 20px 0;
+    background-color: black;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: relative;
+}
+.fillWidthOverride {
+    max-width: 100%;
+}

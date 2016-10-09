@@ -20,6 +20,7 @@ import java.util.List;
 public class StubbedController {
 	@RequestMapping(method = RequestMethod.GET, value = "poem")
 	HttpEntity<String> generatePoem(@RequestParam("url") String url) {
-		return new ResponseEntity<>("         Hello World: " + url, HttpStatus.OK);
+		String response = PoemStaticFunctions.runPoemGen(url);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

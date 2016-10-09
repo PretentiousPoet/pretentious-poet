@@ -4,33 +4,79 @@ import {Row, Col, Image} from 'react-bootstrap';
 export default class SimplePoemComponent extends Component {
 
     static propTypes = {
-        data: React.PropTypes.array
+        data: React.PropTypes.string,
+        picture: React.PropTypes.string
+    };
+
+    poemParser = (poem) => {
+        // let poemString = poem;
+        let newPoemString;
+        while ((newPoemString = poem.replace(/SpacE/g, '')) != poem) {
+            poem = newPoemString;
+        }
+
+        let poemArr = poem.split(/NewlinE/);
+
+        poemArr = poemArr.map((sentence, index) => {
+            if(sentence == ''){
+                return (<br key={index} />);
+            } else {
+                return (<p key={index}>{sentence}</p>);
+            }
+
+        });
+        console.log(poemArr);
+
+
+
+        return poemArr;
     };
 
     render() {
+        const poemText = this.poemParser(this.props.data);
+        const poemTitle = poemText.slice(0,1);
+        const poemBody = poemText.slice(1);
         return (
-            <div className="container text-center">
+            <div className="container" /*text-center*/>
                 <Row>
-                    <Col md={12}>
-                        <h1 style={{color: '#FFBEC2'}}>header</h1>
+                    <Col sm={3}>
+                        <p></p>
                     </Col>
-                </Row>
-                <Row>
-                    <Col md={12}>
-                        <Image src='https://upload.wikimedia.org/wikipedia/commons/f/fb/Welchcorgipembroke.JPG'
-                               rouded
-                               style={{maxHeight: '300px', maxWidth: '500px'}}/>
+                    <Col sm={6}>
+                        <Row>
+                            <Col sm={12}>
+                                <h1 style={{color: '#FFBEC2'}}>{poemTitle}</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
+                                <div >
+                                    {this.props.picture ?
+                                        <Image src={this.props.picture}
+                                               rounded
+                                               responsive
+                                               style={{
+                                                   maxWidth: '100%',
+                                                   height: 'auto',
+                                                   marginTop: 'auto',
+                                                   marginLeft: 'auto',
+                                                   marginRight: 'auto',
+                                                   marginBottom: '30px'
+                                               }}/> : ''}
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12} className="text-center">
+                                {/*<p className="lead">yes</p>*/}
+                                {/*<p style={{whiteSpace: 'wrap'}}>*/}
+                                    {poemBody}
+                                {/*</p>*/}
+                            </Col>
+                        </Row>
                     </Col>
-                </Row>
-                <Row>
-                    <Col md={12}>
-                        {/*<p className="lead">yes</p>*/}
-                        <p>Put Ya Poems Here!</p>
-                        <p> This is a poem,<br />
-                            I like poems, <br />
-                            I also like waffles.
-                        </p>
-                        <p>{this.props.data}</p>
+                    <Col sm={3}>
+                        <p></p>
                     </Col>
                 </Row>
             </div>

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
-import {browserHistory} from 'react-router';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Form} from 'react-bootstrap';
 
 export default class PictureLinkComponent extends Component {
 
     static propTypes = {
-        fetchData: React.PropTypes.func
+        fetchData: React.PropTypes.func,
+        setURL: React.PropTypes.func
     };
 
     constructor(props) {
@@ -17,25 +17,22 @@ export default class PictureLinkComponent extends Component {
     }
 
     getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
+        // const length = this.state.value.length;
+        // if (length > 10)
+            return '';
+        // else if (length > 5) return 'warning';
+        // else if (length > 0) return 'error';
     }
 
     handleChange = (e) => {
         this.setState({value: e.target.value});
     };
 
-    onSuccess = () => {
-        browserHistory.push("/poem");
-    };
-
 
     render() {
         return (
             <Col md={12}>
-                <form>
+                <Form>
                     <Row>
                         <Col md={12}>
                             <FormGroup controlId="picSubmit" validationState={this.getValidationState()}>
@@ -57,7 +54,10 @@ export default class PictureLinkComponent extends Component {
                                 </Row>
                             </FormGroup>
                             <FormControl
-                                style={{maxWidth: '400px', margin: 'auto'/*, backgroundColor:'gray', borderColor:'#777'*/}}
+                                style={{
+                                    maxWidth: '400px',
+                                    margin: 'auto'/*, backgroundColor:'gray', borderColor:'#777'*/
+                                }}
                                 type="text"
                                 value={this.state.value}
                                 placeholder="Enter a URL"
@@ -68,13 +68,17 @@ export default class PictureLinkComponent extends Component {
                     </Row>
                     <Row style={{paddingTop: '20px'}}>
                         <Col md={12}>
-                            <Button onClick={() => this.props.fetchData(this.onSuccess())}
+                            <Button type="submit" onClick={(e) => {
+                                e.preventDefault();
+                                this.props.fetchData(this.state.value);
+                                this.props.setURL(this.state.value);
+                            }}
                                     style={{backgroundColor: '#FFBEC2'}}>
                                 Generate Poem
                             </Button>
                         </Col>
                     </Row>
-                </form>
+                </Form>
             </Col>
         );
     }

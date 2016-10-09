@@ -44,12 +44,12 @@ export default class TopNav extends Component {
                                 <a href="/" className="pull-left">
                                     <img className="image"
                                          src={require('style/logo.png')}
-                                         style={{height: '50px', width: '50px', paddingRight: '10px'}}
+                                         style={{height: '50px', width: '50px'}}
                                     />
                                 </a>
                             </IndexLinkContainer>
                             <IndexLinkContainer to={{pathname: '/'}}>
-                                <a className={path == '/'? 'navColorOverrideWhite navbar-brand' : 'navbar-brand'} href="">
+                                <a className={path == '/'? 'navColorOverrideWhite navbar-brand noPaddingOverride' : 'navbar-brand noPaddingOverride'} href="">
                                     Pretentious Poet</a>
                             </IndexLinkContainer>
                         </div>
