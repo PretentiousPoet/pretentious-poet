@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.SentimentAnnotatedTree;
+import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.SentimentClass;
+import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.util.CoreMap;
+
 
 
 public class PoemStaticFunctions {
@@ -30,9 +40,9 @@ public class PoemStaticFunctions {
 	static List<Word> synonyms;
 	static int COMPLEXITY = 2;
 	static double PROBABILITY = 1.0;
-	static int NUM_POEMS = 128;
-	static int NUM_POOLS = 20;
-	static int NUM_GENERATIONS = 2;
+	static int NUM_POEMS = 50;
+	static int NUM_POOLS = 10;
+	static int NUM_GENERATIONS = 1;
 	static int OPTIMAL_WORD_LENGTH = 200;
 
 //	public static void main(String[] args) throws FileNotFoundException {
@@ -151,21 +161,53 @@ public class PoemStaticFunctions {
 		double alpha = 50;
 		double beta = 2;
 		double gamma = 0.5;
+		
+		double poem1DeltaSentiment = findSentiment(resultPoem1.toString());
+		double poem2DeltaSentiment = findSentiment(resultPoem2.toString());
 
-		double p1Score = ((double) resultPoem1.substitutionCount / (double) resultPoem1.toString().length()) * alpha
+		double p1Score = (((double) resultPoem1.substitutionCount / (double) resultPoem1.toString().length()) * alpha
 				- (double) Math.abs(
 						(OPTIMAL_WORD_LENGTH + resultPoem1.synonyms.size() * gamma) - resultPoem1.toString().length())
-						* beta;
-		double p2Score = ((double) resultPoem2.substitutionCount / (double) resultPoem2.toString().length()) * alpha
+						* beta)/(poem1DeltaSentiment + 1);
+		double p2Score = (((double) resultPoem2.substitutionCount / (double) resultPoem2.toString().length()) * alpha
 				- (double) Math.abs(
 						(OPTIMAL_WORD_LENGTH + resultPoem2.synonyms.size() * gamma) - resultPoem2.toString().length())
-						* beta;
+						* beta)/(poem2DeltaSentiment + 1);
 
 		// System.out.println(p1Score + " vs " + p2Score);
 		if (p1Score > p2Score)
 			return resultPoem1;
 		else
 			return resultPoem2;
+	}
+	
+	public static int findSentiment(String text) {
+		
+		ArrayList<Integer> deltaSentiments = new ArrayList();
+		int lastSentiment = 0;
+		Annotation document = new Annotation(text);
+		Properties props = new Properties();
+		props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
+		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+		pipeline.annotate(document);
+		for (CoreMap sentence : document.get(CoreAnnotations.SentencesAnnotation.class)) {
+			System.out.println("---");
+			System.out.println(sentence);
+			Tree tree = sentence.get(SentimentAnnotatedTree.class);
+			int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
+			System.out.println(sentence.get(SentimentAnnotatedTree.class));
+			System.out.println(sentence.get(SentimentClass.class));
+			System.out.println(sentiment);
+			int deltaSentiment = lastSentiment - sentiment;
+			deltaSentiments.add(deltaSentiment * deltaSentiment);
+			lastSentiment = sentiment;
+
+		}
+		int totalDelta = 0;
+		for (int i = 1; i < deltaSentiments.size(); i++) {
+			totalDelta += deltaSentiments.get(i);
+		}
+		return totalDelta/(deltaSentiments.size());
 	}
 
 	public static List<String> processImage(String url) {
