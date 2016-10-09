@@ -16,14 +16,6 @@ export default class PictureLinkComponent extends Component {
         };
     }
 
-    getValidationState() {
-        // const length = this.state.value.length;
-        // if (length > 10)
-            return '';
-        // else if (length > 5) return 'warning';
-        // else if (length > 0) return 'error';
-    }
-
     handleChange = (e) => {
         this.setState({value: e.target.value});
     };
@@ -35,7 +27,7 @@ export default class PictureLinkComponent extends Component {
                 <Form>
                     <Row>
                         <Col md={12}>
-                            <FormGroup controlId="picSubmit" validationState={this.getValidationState()}>
+                            <FormGroup controlId="picSubmit" validationState={''}>
                                 <Row>
                                     <Col md={12}>
                                         <ControlLabel>
