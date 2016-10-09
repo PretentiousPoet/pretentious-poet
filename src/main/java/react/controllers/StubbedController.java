@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,13 +18,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/api")
 public class StubbedController {
-    @RequestMapping(method = RequestMethod.GET, value = "stub")
-    HttpEntity<List<Integer>> thingy(){
-        List<Integer> lst = new LinkedList<>();
-        lst.add(1);
-        lst.add(2);
-        lst.add(3);
-        lst.add(4);
-        return new ResponseEntity<>(lst, HttpStatus.OK);
-    }
+	@RequestMapping(method = RequestMethod.GET, value = "poem")
+	HttpEntity<String> generatePoem(@RequestParam("url") String url) {
+		return new ResponseEntity<>("         Hello World: " + url, HttpStatus.OK);
+	}
 }
