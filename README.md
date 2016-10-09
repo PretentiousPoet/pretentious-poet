@@ -7,7 +7,7 @@
 **Endpoint:** GET: /api/poem PARAMETER: url
 
 Example Java usage:
-```
+```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
